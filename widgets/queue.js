@@ -127,11 +127,13 @@ module.exports = Uploader.register({
         files = $.map(files, function (file) {
             return me._addFile(file);
         });
-        me.owner.trigger('filesQueued', files);
-        if (me.options.auto) {
-            setTimeout(function () {
-                me.request('start-upload');
-            }, 20);
+        if (files.length) {
+            me.owner.trigger('filesQueued', files);
+            if (me.options.auto) {
+                setTimeout(function () {
+                    me.request('start-upload');
+                }, 20);
+            }
         }
     },
     getStats: function () {

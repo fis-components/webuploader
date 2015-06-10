@@ -9,6 +9,6 @@ var Blob = require('../../lib/blob');
 module.exports = FlashRuntime.register('Blob', {
     slice: function (start, end) {
         var blob = this.flashExec('Blob', 'slice', start, end);
-        return new Blob(blob.uid, blob);
+        return new Blob(this.getRuid(), blob);
     }
 }) || module.exports;;

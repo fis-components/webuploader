@@ -11,10 +11,13 @@ module.exports = Html5Runtime.register('FilePicker', {
     init: function () {
         var container = this.getRuntime().getContainer(), me = this, owner = me.owner, opts = me.options, label = this.label = $(document.createElement('label')), input = this.input = $(document.createElement('input')), arr, i, len, mouseHandler;
         input.attr('type', 'file');
+        input.attr('capture', 'camera');
         input.attr('name', opts.name);
         input.addClass('webuploader-element-invisible');
-        label.on('click', function () {
+        label.on('click', function (e) {
             input.trigger('click');
+            e.stopPropagation();
+            owner.trigger('dialogopen');
         });
         label.css({
             opacity: 0,

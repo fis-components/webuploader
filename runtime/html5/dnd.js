@@ -75,6 +75,8 @@ module.exports = Html5Runtime.register('DragAndDrop', {
             data = dataTransfer.getData('text/html');
         } catch (err) {
         }
+        me.dndOver = false;
+        me.elem.removeClass(prefix + 'over');
         if (data) {
             return;
         }
@@ -83,8 +85,6 @@ module.exports = Html5Runtime.register('DragAndDrop', {
                 return new File(ruid, file);
             }));
         });
-        me.dndOver = false;
-        me.elem.removeClass(prefix + 'over');
         return false;
     },
     // 如果传入 callback 则去查看文件夹，否则只管当前文件夹。
